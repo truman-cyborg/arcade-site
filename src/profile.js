@@ -23,7 +23,32 @@ class Profile extends Component{
 
     //add the money into the currentBalance and minus that from totalGain
     addMoney= async e =>  {
+         let money = document.getElementById("addNumber").value;
+         let newCurrent = parseInt(localStorage.getItem("currentBalance")) + parseInt(money);
+         let newTotal = parseInt(localStorage.getItem("totalGain")) - money;
 
+         const myData = {
+            currentBalance: newCurrent,
+            totalGain: newTotal
+            }
+         const url = "http://localhost:3001/updateMoney/"+ localStorage.getItem("user");
+         
+         try {
+           const response = await fetch(url, {
+             method: "POST",
+             body: JSON.stringify(myData),
+             headers: { 'Content-Type': 'application/json'}
+           }).then(() => {
+            localStorage.setItem("currentBalance", newCurrent.toString())
+            localStorage.setItem("totalGain", newTotal.toString())
+            window.location.reload(false);
+           });
+           console.log(response);
+         } catch (err) {
+           console.error(err.message);
+         } 
+
+         
     };
 
     render(){
@@ -46,16 +71,16 @@ class Profile extends Component{
                 <p>Current Balance:  {this.state.currentBalance}</p>  
                 <p>Total gain:  {this.state.totalGain}</p> 
                 <label className="center" for="number">Amount adding:</label> 
-                <input className="center" id="number" type="number" name="number"/>
+                <input className="center" id="addNumber" type="number" name="number"/>
                 <button className="center" onClick={this.addMoney}> Add</button>    
                 </div>
                 </div>
                 
-                <h1 className="center"> Add money</h1>
+                {/* <h1 className="center"> Add money</h1>
                 <label className="center" for="number">Password:</label> 
                 <input className="center" id="number" type="number" name="number"/>
                 <button className="center"> Add</button>
-           
+            */}
             
 
           </div>

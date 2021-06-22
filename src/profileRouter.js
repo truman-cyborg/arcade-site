@@ -11,7 +11,7 @@ class ProfileRouter extends Component{
     }  
 
   async  componentDidMount(){
-      if (localStorage.getItem("user") === ""){
+      if (localStorage.getItem("user") === "" || localStorage.getItem("user") === undefined){
         this.setState({card : <LoginPage/>})
       }else{
         this.setState({card : <Profile/>})

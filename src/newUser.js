@@ -4,6 +4,9 @@ import { Redirect } from 'react-router-dom';
 class NewUser extends Component{
 
   
+  state ={
+    redirect: null
+  }
     submit = async e =>
     {
       e.preventDefault();
@@ -41,7 +44,7 @@ class NewUser extends Component{
           body: JSON.stringify(myData),
           headers: { 'Content-Type': 'application/json'}
         }).then(() => {
-          this.setState({ redirect: "/" });
+          this.setState({ redirect: "/profileRouter" });
         });
         console.log(response);
       } catch (err) {
@@ -50,6 +53,9 @@ class NewUser extends Component{
     }  
 
   render(){
+    if (this.state.redirect) {
+      return <Redirect to={this.state.redirect} />
+    }
     return(
       <div class="center">
         <form onSubmit={this.submit}> 

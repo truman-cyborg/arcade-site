@@ -21,16 +21,16 @@ const User = sequelize.define('user',{
 app.post('/formSubmit',function(request, response){
   console.log("SUBMITTING FORMS");
       console.log(request.body);
-     const User = sequelize.define('user',{
+    const User = sequelize.define('user',{
     name:{type: Sequelize.STRING} ,
     password: {type: Sequelize.STRING},
     currentBalance: {type: Sequelize.INTEGER}, 
     totalGain: {type: Sequelize.INTEGER}, 
     });
     User.sync().then(() => {
-        User.create(request.body).then(response => response.send(response))
+        User.create(request.body).then(response => response.send(true));
   })
-    response.send("The form has been received");
+   
 
 });
 
@@ -56,6 +56,28 @@ app.get('/login/:name/:password', function(request, res) {
         }
     });
   });
+
+
+  //to update user with new total money
+app.post('/updateMoney/:name', function(request, res) {
+  const user = request.params.name;
+  
+  console.log("UPDATING MONEY");
+  console.log("USER: " + user);
+  
+  //find the user then patch the data with the new total and currentBalance
+    User.update(request.body, {
+      where: { name: user }
+      }).then(res => res.send(res));
+
+      response.send("The form has been received");
+
+     
+});
+
+
+//anything below is from old campus code 
+
 
 
   app.get('/getid/:id', function(request, res) {
