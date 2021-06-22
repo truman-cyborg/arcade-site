@@ -44,6 +44,7 @@ class NewUser extends Component{
           body: JSON.stringify(myData),
           headers: { 'Content-Type': 'application/json'}
         }).then(() => {
+          console.log("NEW USER MADE");
           this.setState({ redirect: "/profileRouter" });
         });
         console.log(response);

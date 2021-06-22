@@ -28,9 +28,9 @@ app.post('/formSubmit',function(request, response){
     totalGain: {type: Sequelize.INTEGER}, 
     });
     User.sync().then(() => {
-        User.create(request.body).then(response => response.send(true));
+        User.create(request.body).then(response => response.send(response));
   })
-   
+  response.send("The form has been received");
 
 });
 
