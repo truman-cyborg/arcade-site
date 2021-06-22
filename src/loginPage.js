@@ -31,8 +31,8 @@ class LoginPage extends Component{
         password: document.getElementById("loginPassword").value.trim()
       }
 
-      console.log(myData)
-      const url = "http://localhost:3001/login/" + myData.name;
+      console.log(myData.name)
+      const url = "http://localhost:3001/login/" + myData.name + "/"+ myData.password;
       console.log(url)
       try{
         const response = await fetch(url, {
@@ -40,7 +40,19 @@ class LoginPage extends Component{
           }).then(response => response.json())
           .then(responseJson => {
              console.log("line 41", responseJson);
-             console.log(responseJson.data);
+              if(responseJson === false){
+                alert("false");
+              }else{
+                alert("true");
+                localStorage.setItem("user",responseJson.name);
+                localStorage.setItem("currentBalance", responseJson.currentBalance.toString());
+                localStorage.setItem("totalGain", responseJson.totalGain.toString());
+                console.log(localStorage.getItem("user"));
+                console.log(localStorage.getItem("currentBalance"));
+                console.log(localStorage.getItem("totalGain"));
+                //add data to localStorage
+                //redirect to home page 
+              }   
            })
            .catch((error) => {
               console.log("Failed to retrieve trending gifs");

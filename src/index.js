@@ -8,9 +8,9 @@ import NewUser from './newUser';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
 ReactDOM.render(
- 
+
   <React.StrictMode>
-    <Logo/>
+    <img id ="logo" src="https://i.pinimg.com/564x/0a/af/7b/0aaf7bc9cd18138505c1dd66bf1d0bbf.jpg" width="600" height="100"/>
     <BrowserRouter>
     <div>
     <div class="container">

@@ -19,7 +19,7 @@ const User = sequelize.define('user',{
 
 //used to making new users
 app.post('/formSubmit',function(request, response){
-  console.log("BODY REQUEST");
+  console.log("SUBMITTING FORMS");
       console.log(request.body);
      const User = sequelize.define('user',{
     name:{type: Sequelize.STRING} ,
@@ -36,10 +36,24 @@ app.post('/formSubmit',function(request, response){
 
 
 //used for login in and seeing if the data matches with the input
-app.get('/login/:name', function(request, res) {
+app.get('/login/:name/:password', function(request, res) {
     const user = request.params.name;
-    User.findAll({ where: { name: user } }).then((data) => {
-        res.send(data);
+    const password = request.params.password;
+    console.log("LOGGING IN");
+    console.log("USER: " + user);
+    console.log("PASSWORD: " + password);
+    //fine the one that matches the user name in the database
+    //then see if the password match with the one in the database
+    //if match => return the info of the account
+    //else return a false value
+    User.findOne({ where: { name: user } }).then((data) => {
+        console.log("USER: " + data.name);
+         console.log("PASSWORD: " + data.password);
+        if(data.password === password){
+            res.send(data);
+        }else{
+            res.send(false);
+        }
     });
   });
 
