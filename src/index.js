@@ -5,6 +5,8 @@ import App from './App';
 import Logo from './logo';
 import LoginPage from './loginPage';
 import NewUser from './newUser';
+import Profile from './profile';
+import ProfileRouter from './profileRouter';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
 ReactDOM.render(
@@ -14,14 +16,14 @@ ReactDOM.render(
     <BrowserRouter>
     <div>
     <div class="container">
-    <div class="box-1">  
+    <div class="box-3">  
     <Link to="/" > Home </Link>
     </div>
-    <div class="box-1">
+    <div class="box-3">
     <Link to="/" > Games </Link>
     </div>
-    <div class="box-1">
-    <Link to="/loginPage" > login </Link>
+    <div class="box-3">
+    <Link to="/profileRouter" > Profile </Link>
     </div>  
     </div>  
 
@@ -29,6 +31,8 @@ ReactDOM.render(
     <Route exact path="/" component={App} />
     <Route exact path="/loginPage" component={LoginPage}/>
     <Route exact path="/newUser" component={NewUser}/>
+    <Route exact path="/profile" component={Profile}/>
+    <Route exact path="/profileRouter" component={ProfileRouter}/>
     </Switch>
    </div>
   </BrowserRouter>,

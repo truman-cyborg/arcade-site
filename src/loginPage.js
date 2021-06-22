@@ -50,6 +50,7 @@ class LoginPage extends Component{
                 console.log(localStorage.getItem("user"));
                 console.log(localStorage.getItem("currentBalance"));
                 console.log(localStorage.getItem("totalGain"));
+                window.location.reload(false);
                 //add data to localStorage
                 //redirect to home page 
               }   
