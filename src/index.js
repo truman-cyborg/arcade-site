@@ -8,7 +8,9 @@ import NewUser from './newUser';
 import Profile from './profile';
 import EditPic from './editPic';
 import ProfileRouter from './profileRouter';
+import GameRouter from './gameRouter';
 import reportWebVitals from './reportWebVitals';
+import Cointoss from './coinToss';
 import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
 ReactDOM.render(
 
@@ -21,7 +23,7 @@ ReactDOM.render(
     <Link to="/" > Home </Link>
     </div>
     <div class="box-3">
-    <Link to="/" > Games </Link>
+    <Link to="/gameRouter" > Games </Link>
     </div>
     <div class="box-3">
     <Link to="/profileRouter" > Profile </Link>
@@ -34,7 +36,9 @@ ReactDOM.render(
     <Route exact path="/newUser" component={NewUser}/>
     <Route exact path="/profile" component={Profile}/>
     <Route exact path="/profileRouter" component={ProfileRouter}/>
+    <Route exact path="/gameRouter" component={GameRouter}/>
     <Route exact path="/editpic" component={EditPic}/>
+    <Route exact path="/cointoss" component={Cointoss}/>
     </Switch>
    </div>
   </BrowserRouter>,
