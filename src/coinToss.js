@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './Rock.css';
 import heads from './img/heads.png';
 import tails from './img/tails.png';
 import Coin from './coin';
@@ -55,7 +55,7 @@ class Cointoss extends React.Component {
         setTimeout(() =>{
             this.setState({flipping: false, results: ""});
         }, 500);
-        //do comparision here
+        
     }
 
     results = () =>{
@@ -110,7 +110,7 @@ class Cointoss extends React.Component {
             return <Redirect to={this.state.redirect} />
           }
         return(
-            <div id="CoinGame">
+            <div className="center" id="CoinGame">
                 <h1>Coin Flip</h1>
                 <div className='flip-coin'>
                     {/* <div className='flip-coin-front'>
@@ -121,12 +121,14 @@ class Cointoss extends React.Component {
                     </div>  
                 </div>
                 <h3>Current Balance: {localStorage.getItem("currentBalance")}</h3>
-                <label for="side">What side do you bet on:</label>
+                <h3>What side do you bet on:</h3>
+                {/* <label for="side">What side do you bet on:</label> */}
                 <select name="side" id="side">
                  <option value="Head">Head</option>
                  <option value="Tail">Tail</option>
                 </select> <br></br>
-                <label for="bet">Amount to bet: </label> <br></br>
+                <h3>Amount to bet:</h3> <br></br>
+                {/* <label for="bet">Amount to bet: </label> <br></br> */}
                 <input id="bet" min="1" name="bet" max={localStorage.getItem("currentBalance")} type="number" /> <br></br>
                 <button onClick={this.flipCoin}>
                     Toss!

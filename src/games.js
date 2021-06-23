@@ -8,9 +8,13 @@ class Games extends Component{
         redirect: null
     }  
 
-    print = async e =>  {
+    sentToCoin = async e =>  {
       this.setState({ redirect: "/cointoss" });
     };
+
+    sentToRPS = async e =>  {
+        this.setState({ redirect: "/rps" });
+      };
   
     render(){
         if (this.state.redirect) {
@@ -20,7 +24,8 @@ class Games extends Component{
           <div>
               <div className="container">
               <div className="box-3">
-                 <img onClick={this.print} src="https://media.tenor.com/images/60b3d58b8161ad9b03675abf301e8fb4/tenor.gif"  width="200" height="200"/>
+                 <img onClick={this.sentToCoin} src="https://media.tenor.com/images/60b3d58b8161ad9b03675abf301e8fb4/tenor.gif"  width="200" height="200"/>
+                 <img onClick={this.sentToRPS} src="https://i.pinimg.com/originals/3b/f2/f4/3bf2f45865bc4a63a663611ea357de4c.gif"  width="200" height="200"/>
                  </div>
               </div>   
           </div>

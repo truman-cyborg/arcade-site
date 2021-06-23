@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import Logo from './logo';
 import LoginPage from './loginPage';
 import NewUser from './newUser';
 import Profile from './profile';
@@ -11,6 +10,7 @@ import ProfileRouter from './profileRouter';
 import GameRouter from './gameRouter';
 import reportWebVitals from './reportWebVitals';
 import Cointoss from './coinToss';
+import RPS from './RPS';
 import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
 ReactDOM.render(
 
@@ -39,6 +39,7 @@ ReactDOM.render(
     <Route exact path="/gameRouter" component={GameRouter}/>
     <Route exact path="/editpic" component={EditPic}/>
     <Route exact path="/cointoss" component={Cointoss}/>
+    <Route exact path="/rps" component={RPS}/>
     </Switch>
    </div>
   </BrowserRouter>,
