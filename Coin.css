@@ -1,0 +1,12 @@
+.Coinimg{
+    width: 100px;
+    height: 100px;
+  }
+  
+  .flip-coin-front, .flip-coin-back {
+    margin: 80px;
+  }
+  
+  #CoinGame button:hover{
+    cursor: pointer;
+  }
