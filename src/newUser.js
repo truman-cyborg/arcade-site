@@ -35,7 +35,8 @@ class NewUser extends Component{
         name: document.getElementById("loginUser").value.trim(),
         password: document.getElementById("loginPassword").value.trim(),
         currentBalance: 500,
-        totalGain: 0
+        totalGain: 0,
+        image :"https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"
       }
       const url = "http://localhost:3001/formSubmit";
       try {
