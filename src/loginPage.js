@@ -41,12 +41,13 @@ class LoginPage extends Component{
           .then(responseJson => {
              console.log("line 41", responseJson);
               if(responseJson === false){
-                alert("false");
+                alert("wrong user and/or password");
               }else{
                 alert("true");
                 localStorage.setItem("user",responseJson.name);
                 localStorage.setItem("currentBalance", responseJson.currentBalance.toString());
                 localStorage.setItem("totalGain", responseJson.totalGain.toString());
+                localStorage.setItem("Url", responseJson.image.toString());
                 console.log(localStorage.getItem("user"));
                 console.log(localStorage.getItem("currentBalance"));
                 console.log(localStorage.getItem("totalGain"));

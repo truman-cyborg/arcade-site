@@ -6,6 +6,7 @@ import Logo from './logo';
 import LoginPage from './loginPage';
 import NewUser from './newUser';
 import Profile from './profile';
+import EditPic from './editPic';
 import ProfileRouter from './profileRouter';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
@@ -33,6 +34,7 @@ ReactDOM.render(
     <Route exact path="/newUser" component={NewUser}/>
     <Route exact path="/profile" component={Profile}/>
     <Route exact path="/profileRouter" component={ProfileRouter}/>
+    <Route exact path="/editpic" component={EditPic}/>
     </Switch>
    </div>
   </BrowserRouter>,

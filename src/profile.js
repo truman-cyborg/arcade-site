@@ -18,6 +18,7 @@ class Profile extends Component{
         localStorage.setItem("user", "")
         localStorage.setItem("currentBalance", "")
         localStorage.setItem("totalGain", "")
+        localStorage.setItem("Url", "")
         window.location.reload(false);
     };
 
@@ -57,7 +58,9 @@ class Profile extends Component{
             <h1 className="center">{this.state.name}</h1>
             <div className="container">
                 <div className="box-1">
-                <button> Edit </button>
+                <Link to={"/editpic"} > 
+                <button> Edit Picture</button>
+                </Link> 
                 </div>
                 <div className="box-1">
                 <button onClick={this.logOut}> Log Out</button>
@@ -65,7 +68,7 @@ class Profile extends Component{
                 </div>
             <div className="container">
                 <div className="box-1">
-                <img src={this.state.image}  width="400" height="400"/>
+                <img src={localStorage.getItem("Url")}  width="400" height="400"/>
                 </div>
                 <div className="box-2">
                 <p>Current Balance:  {this.state.currentBalance}</p>  

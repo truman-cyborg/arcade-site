@@ -13,7 +13,8 @@ app.use(cors());
 const User = sequelize.define('user',{
     name:{type: Sequelize.STRING} ,
     password: {type: Sequelize.STRING},
-    currentBalance: {type: Sequelize.INTEGER}, 
+    image: {type: Sequelize.STRING},
+    currentBalance: {type: Sequelize.INTEGER},  
     totalGain: {type: Sequelize.INTEGER}, 
 });
 
@@ -24,6 +25,7 @@ app.post('/formSubmit',function(request, response){
     const User = sequelize.define('user',{
     name:{type: Sequelize.STRING} ,
     password: {type: Sequelize.STRING},
+    image: {type: Sequelize.STRING},
     currentBalance: {type: Sequelize.INTEGER}, 
     totalGain: {type: Sequelize.INTEGER}, 
     });
@@ -54,6 +56,8 @@ app.get('/login/:name/:password', function(request, res) {
         }else{
             res.send(false);
         }
+    }).catch((error) => {
+      res.send(false);
     });
   });
 
