@@ -51,11 +51,11 @@ class Cointoss extends React.Component {
                  back: face === heads ? this.props.coinSide[0] : this.props.coinSide[1],
                 results : this.results()
             })
-        },50)
+        },1000)
 
         setTimeout(() =>{
             this.setState({flipping: false, results: ""});
-        }, 500);
+        }, 3000);
         
     }
 

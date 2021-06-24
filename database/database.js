@@ -79,6 +79,11 @@ app.post('/updateMoney/:name', function(request, res) {
      
 });
 
+app.get('/getAll', function(request, res) {
+  User.findAll().then((data) => {
+      res.send(data);
+  });
+});
 
 //anything below is from old campus code 
 
@@ -90,11 +95,7 @@ app.post('/updateMoney/:name', function(request, res) {
         res.send(data);
     });
   }); 
-app.get('/getAll', function(request, res) {
-    User.findAll().then((data) => {
-        res.send(data);
-    });
-  });
+
 
   app.get('/getid/:id', function(request, res) {
     const id = request.params.id;

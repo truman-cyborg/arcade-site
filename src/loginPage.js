@@ -43,7 +43,7 @@ class LoginPage extends Component{
               if(responseJson === false){
                 alert("wrong user and/or password");
               }else{
-                alert("true");
+                
                 localStorage.setItem("user",responseJson.name);
                 localStorage.setItem("currentBalance", responseJson.currentBalance.toString());
                 localStorage.setItem("totalGain", responseJson.totalGain.toString());

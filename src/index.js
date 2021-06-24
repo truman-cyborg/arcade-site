@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import "./styles/index.scss";
 import LoginPage from './loginPage';
 import NewUser from './newUser';
 import Profile from './profile';
@@ -11,6 +12,9 @@ import GameRouter from './gameRouter';
 import reportWebVitals from './reportWebVitals';
 import Cointoss from './coinToss';
 import RPS from './RPS';
+import Game from './Components/Game/Game';
+import BJBet from './bjBet';
+import LeaderBoard from './leaderboard';
 import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
 ReactDOM.render(
 
@@ -24,6 +28,9 @@ ReactDOM.render(
     </div>
     <div class="box-3">
     <Link to="/gameRouter" > <h2>Game</h2> </Link>
+    </div>
+    <div class="box-3">
+    <Link to="/leaderboard" > <h2>LeaderBoard</h2> </Link>
     </div>
     <div class="box-3">
     <Link to="/profileRouter" > <h2>Profile</h2> </Link>
@@ -40,6 +47,9 @@ ReactDOM.render(
     <Route exact path="/editpic" component={EditPic}/>
     <Route exact path="/cointoss" component={Cointoss}/>
     <Route exact path="/rps" component={RPS}/>
+     <Route exact path="/blackjack" component={Game}/> 
+     <Route exact path="/blackjackbet" component={BJBet}/> 
+     <Route exact path="/leaderboard" component={LeaderBoard}/> 
     </Switch>
    </div>
   </BrowserRouter>,

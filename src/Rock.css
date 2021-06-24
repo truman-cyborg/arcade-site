@@ -3,7 +3,7 @@ body {
     margin: 1rem auto;
     display: flex;
     justify-content: space-evenly;
-    background-image: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ffc08.deviantart.net%2Ffs70%2Ff%2F2014%2F137%2F1%2Fc%2Fcasino_card_background_wallpaper_hd_1920x1080_by_giozaga-d7intx0.jpg&f=1&nofb=1);
+    background-image: url(https://image.freepik.com/free-vector/pattern-poker-casino-poker-card-suits-white-background_47243-1161.jpg);
   }
   
   h1, p{
@@ -111,7 +111,7 @@ body {
     width: 100px;
     height: 50px;
     margin: 20px auto;
-    color: white;
+    color: black;
     font-size: 26px;
     text-align: center;
     font-weight: bold;
