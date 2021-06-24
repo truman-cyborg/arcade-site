@@ -1,0 +1,36 @@
+$cards-ids: 2C, 2D, 2H, 2S, 3C, 3D, 3H, 3S, 4C, 4D, 4H, 4S, 5C, 5D, 5H, 5S, 6C, 6D, 6H, 6S, 7C, 7D, 7H, 7S, 8C, 8D, 8H, 8S, 9C, 9D, 9H, 9S, 10C, 10D, 10H, 10S, JC, JD, JH, JS, QC, QD, QH, QS,
+KC, KD, KH, KS, AC, AD, AH, AS;
+
+.hand {
+  display: flex;
+  justify-content: center;
+
+  .cards {
+    width: 100px;
+    height: 140px;
+    margin: 20px 5px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  @each $id in $cards-ids {
+    .card-#{$id} {
+      background-image: url("../assets/images/cards/#{$id}.png");
+      animation: getCard 0.5s;
+    }
+  }
+
+  .card-back {
+    background-image: url("../assets/images/cards/green_back.png");
+    animation: getCard 0.5s;
+  }
+}
+
+@keyframes getCard {
+  from {
+    margin-left: -600px;
+  }
+  to {
+    margin-left: 5px;
+  }
+}
