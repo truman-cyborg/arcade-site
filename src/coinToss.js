@@ -22,7 +22,8 @@ class Cointoss extends React.Component {
         return this.props.coinSide[Math.floor(Math.random() * this.props.coinSide.length)];
     }
 
-    flipCoin = () =>{
+    flipCoin = (event) =>{
+        event.preventDefault();
         if(localStorage.getItem("currentBalance") == 0){
             alert("Have a no money, please add money to your account")
             this.setState({ redirect: "/profile" });

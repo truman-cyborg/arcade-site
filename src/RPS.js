@@ -105,9 +105,6 @@ updateMoney = async (myData) =>{
     <div className="RPS">
       <div>
         <h1>Rock Paper Scissors</h1>
-        <h1>Player</h1>
-        <h1>Opponent</h1>
-        <p>Score:</p>
       </div>
       <div>
         <Player choice={myChoice}/>

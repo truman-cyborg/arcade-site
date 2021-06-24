@@ -20,13 +20,13 @@ ReactDOM.render(
     <div>
     <div class="container">
     <div class="box-3">  
-    <Link to="/" > Home </Link>
+    <Link to="/" > <h2>Home</h2> </Link>
     </div>
     <div class="box-3">
-    <Link to="/gameRouter" > Games </Link>
+    <Link to="/gameRouter" > <h2>Game</h2> </Link>
     </div>
     <div class="box-3">
-    <Link to="/profileRouter" > Profile </Link>
+    <Link to="/profileRouter" > <h2>Profile</h2> </Link>
     </div>  
     </div>  
 

@@ -58,3 +58,6 @@ border:1px #ccc solid;
   padding: 10px;
 }
 
+a:visited{
+	color: black;
+}
