@@ -5,7 +5,6 @@ import LeaderBoardCard from './leaderboardCard';
 class LeaderBoard extends Component{
 
   state = {
-    user:localStorage.getItem("user") ,
     user:[],
     leaderboard: []
   };

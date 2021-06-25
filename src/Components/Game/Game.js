@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import Hand from "./Hand";
 import DealersHand from "./DealersHand";
 import cards from "../../assets/cards";
+import { Redirect } from 'react-router-dom';
 class Game extends Component {
   state = {
+    redirect: null,
     deck: [...cards],
     playerCards: [],
     dealerCards: [],
@@ -29,13 +31,13 @@ class Game extends Component {
     const randomIndex = Math.floor(Math.random() * deckCards.length);
     dealerScore += deckCards[randomIndex].cardValue;
     dealerCards.push(deckCards[randomIndex]);
-    console.log(deckCards[randomIndex]);
     deckCards.splice(randomIndex, 1);
 
     const statesToSet = {
       dealerScore: dealerScore,
       dealerCards: dealerCards,
-      deck: deckCards
+      deck: deckCards,
+      bet: 5
     };
 
     if (dealerCards.length === 2) {
@@ -43,7 +45,6 @@ class Game extends Component {
         const randomIndex = Math.floor(Math.random() * deckCards.length);
         dealerScore += deckCards[randomIndex].cardValue;
         dealerCards.push(deckCards[randomIndex]);
-        console.log(deckCards[randomIndex]);
         deckCards.splice(randomIndex, 1);
         statesToSet.deck = deckCards;
         statesToSet.dealerCards = dealerCards;
@@ -53,26 +54,33 @@ class Game extends Component {
 
       if (dealerScore === playerScore && dealerScore < 21 && playerScore < 21) {
         statesToSet.draw = true;
-        statesToSet.dealerScore += dealerCards[0].cardValue;
+        statesToSet.money = money + bet;
       } else if (
         playerScore === 21 ||
         (dealerScore < playerScore && playerScore < 21) ||
         (dealerScore > 21 && playerScore < 21)
       ) {
+        this.win();
         statesToSet.playerWin = true;
-        statesToSet.dealerScore += dealerCards[0].cardValue;
+        statesToSet.money = money + bet * 2;
       } else if (
         dealerScore === 21 ||
         (dealerScore > playerScore && dealerScore < 21) ||
         playerScore > 21
       ) {
+        this.lost()
         statesToSet.dealerWin = true;
-        statesToSet.dealerScore += dealerCards[0].cardValue;
+        statesToSet.money = money - bet;
       }
     }
   };
 
   startNewGame = () => {
+    if(parseInt(localStorage.getItem("currentBet")) >  parseInt(localStorage.getItem("currentBalance"))){
+      alert("Have a no money, please add money to your account");
+      this.setState({ redirect: "/profile" });
+    }
+
     this.setState({
       gameStarted: false,
       deck: [],
@@ -96,10 +104,12 @@ class Game extends Component {
     deckCards.splice(randomIndex, 1);
     
     if (playerScore === 21) {
+      this.win()
       playerWin = true;
       
     }
     if (playerScore > 21) {
+      this.lost()
       dealerWin = true;
      
     }
@@ -127,7 +137,52 @@ class Game extends Component {
     }
   }
 
+  win = () =>{
+    let newCurrent = parseInt(localStorage.getItem("currentBalance")) + parseInt(localStorage.getItem("currentBet"));
+        let newTotal = parseInt(localStorage.getItem("totalGain")) + parseInt(localStorage.getItem("currentBet"));
+        console.log("You Lost");
+        const myData = 
+        {
+            currentBalance: newCurrent,
+            totalGain: newTotal
+          }
+        this.updateMoney(myData);
+  }
+
+  lost = () =>{
+    let newCurrent = parseInt(localStorage.getItem("currentBalance")) - parseInt(localStorage.getItem("currentBet"));
+        let newTotal = parseInt(localStorage.getItem("totalGain")) - parseInt(localStorage.getItem("currentBet"));
+        console.log("You Lost");
+        const myData = 
+        {
+            currentBalance: newCurrent,
+            totalGain: newTotal
+          }
+        this.updateMoney(myData);
+  }
+
+  updateMoney = async (myData) =>{
+    const url = "http://localhost:3001/updateMoney/"+ localStorage.getItem("user");
+     
+     try {
+       const response = await fetch(url, {
+         method: "POST",
+         body: JSON.stringify(myData),
+         headers: { 'Content-Type': 'application/json'}
+       }).then(() => {
+        localStorage.setItem("currentBalance", myData.currentBalance.toString())
+        localStorage.setItem("totalGain", myData.totalGain.toString())
+       });
+       console.log(response);
+     } catch (err) {
+       console.error(err.message);
+     } 
+}
+
   render() {
+    if (this.state.redirect) {
+      return <Redirect to={this.state.redirect} />
+    }
     const {
       dealerScore,
       playerScore,
@@ -140,6 +195,7 @@ class Game extends Component {
 
       return (
         <div className='col-md-12 col-xs-12'>
+          <h1>Current Balance: {localStorage.getItem("currentBalance")} Bet Amount: {localStorage.getItem("currentBet")}</h1>
           <DealersHand cards={dealerCards} />
           <div className='panel'>
             <h3>Dealer's score: {dealerScore}</h3>

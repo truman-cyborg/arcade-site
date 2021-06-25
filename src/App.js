@@ -8,7 +8,7 @@ class App extends Component{
     campusCard:[]
   };
 
-
+  
   render(){
     return(
       <div>
