@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import Hand from "./Hand";
 import DealersHand from "./DealersHand";
+import Bet from "./Bet";
 import cards from "../../assets/cards";
+import { Redirect } from "react-router";
 
 class Game extends Component {
   state = {
+    bet: 5,
     deck: [...cards],
     playerCards: [],
     dealerCards: [],
@@ -14,6 +17,7 @@ class Game extends Component {
     dealerWin: false,
     draw: false,
   };
+
 
   getRandomCards = () => {
     for (let i = 0; i < 2; i++) {
@@ -30,13 +34,13 @@ class Game extends Component {
     const randomIndex = Math.floor(Math.random() * deckCards.length);
     dealerScore += deckCards[randomIndex].cardValue;
     dealerCards.push(deckCards[randomIndex]);
-    console.log(deckCards[randomIndex]);
     deckCards.splice(randomIndex, 1);
 
     const statesToSet = {
       dealerScore: dealerScore,
       dealerCards: dealerCards,
-      deck: deckCards
+      deck: deckCards,
+      bet: 5
     };
 
     if (dealerCards.length === 2) {
@@ -44,7 +48,6 @@ class Game extends Component {
         const randomIndex = Math.floor(Math.random() * deckCards.length);
         dealerScore += deckCards[randomIndex].cardValue;
         dealerCards.push(deckCards[randomIndex]);
-        console.log(deckCards[randomIndex]);
         deckCards.splice(randomIndex, 1);
         statesToSet.deck = deckCards;
         statesToSet.dealerCards = dealerCards;
@@ -54,28 +57,27 @@ class Game extends Component {
 
       if (dealerScore === playerScore && dealerScore < 21 && playerScore < 21) {
         statesToSet.draw = true;
-        statesToSet.dealerScore += dealerCards[0].cardValue;
+        statesToSet.money = money + bet;
       } else if (
         playerScore === 21 ||
         (dealerScore < playerScore && playerScore < 21) ||
         (dealerScore > 21 && playerScore < 21)
       ) {
         statesToSet.playerWin = true;
-        statesToSet.dealerScore += dealerCards[0].cardValue;
+        statesToSet.money = money + bet * 2;
       } else if (
         dealerScore === 21 ||
         (dealerScore > playerScore && dealerScore < 21) ||
         playerScore > 21
       ) {
         statesToSet.dealerWin = true;
-        statesToSet.dealerScore += dealerCards[0].cardValue;
+        statesToSet.money = money - bet;
       }
     }
   };
 
   startNewGame = () => {
     this.setState({
-      gameStarted: false,
       deck: [],
       playerCards: [],
       dealerCards: [],
@@ -87,8 +89,12 @@ class Game extends Component {
     });
   };
 
+  endRound = () => {
+    this.getDealerCard();
+  };
+
   getPlayerCard = () => {
-    const { deck, playerCards, bet } = this.state;
+    const { deck, playerCards } = this.state;
     let { playerScore, playerWin, dealerWin, money } = this.state;
     const deckCards = deck.length > 0 ? deck : [...cards];
     const randomIndex = Math.floor(Math.random() * deckCards.length);
@@ -98,11 +104,9 @@ class Game extends Component {
     
     if (playerScore === 21) {
       playerWin = true;
-      
     }
     if (playerScore > 21) {
       dealerWin = true;
-     
     }
     this.setState({
       deck: deckCards,
@@ -110,11 +114,8 @@ class Game extends Component {
       playerScore: playerScore,
       playerWin: playerWin,
       dealerWin: dealerWin,
+      money: money
     });
-  };
-
-  endRound = () => {
-    this.getDealerCard();
   };
 
 
@@ -156,7 +157,6 @@ class Game extends Component {
                   <button className='game-button' onClick={this.startNewGame}>
                     Play again
                   </button>
-                  
                 </div>
               </div>
             </div>
