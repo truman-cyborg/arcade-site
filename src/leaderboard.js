@@ -56,7 +56,7 @@ class LeaderBoard extends Component{
 
   render(){
     return(
-       <div className="center">
+       <div >
          {this.state.leaderboard}
       </div>
     )

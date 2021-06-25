@@ -5,12 +5,12 @@ class LeaderBoardCard extends Component{
 
   render(){
     return(
-       <div className="center">
-           <div className="box-1"> 
-           <tr>
-             <td>{this.props.card.name} </td>
-             <td> {this.props.card.totalGain}</td>
-          </tr>
+       <div className="container">
+           <div className="box-3"> 
+           <h3>{this.props.card.name} </h3>
+          </div>
+          <div className="box-3">
+          <h3> {this.props.card.totalGain}</h3>
           </div>
       </div>
     )
